@@ -31,6 +31,18 @@ services:
       - API_BASE_URL=http://backend:8000
     depends_on:
       - backend
+  
+  # 임베딩 모델은 bge-m3(임시), 환경은 cpu(추후 환경에 따라 변경 필요함)
+  # 볼륨은 모델을 저장하는데 사용됨
+  embedding:
+    image: ghcr.io/huggingface/text-embeddings-inference:cpu-1.9
+    container_name: novel_embedding
+    command: --model-id BAAI/bge-m3
+    ports:
+      - "8080:80"
+    volumes:
+      - hf_cache:/data
 
 volumes:
   pgdata:
+  hf_cache:

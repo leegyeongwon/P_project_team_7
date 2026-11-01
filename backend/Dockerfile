@@ -4,7 +4,7 @@ FROM python:3.10-slim
 # 작업 디렉토리 설정
 WORKDIR /app
 
-# 시스템 패키지 설치 (필요한 경우)
+# 시스템 패키지 설치
 RUN apt-get update && apt-get install -y \
     gcc \
     && rm -rf /var/lib/apt/lists/*
@@ -16,5 +16,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 # 소스 코드 전체 복사
 COPY . .
 
-# FastAPI 서버 실행 명령어 (Uvicorn 활용)
+# FastAPI 서버 실행 명령어
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]

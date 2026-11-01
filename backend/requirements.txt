@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+pydantic
+langgraph
+sentence-transformers
+psycopg2-binary

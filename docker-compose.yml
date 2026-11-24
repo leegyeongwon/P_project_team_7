@@ -19,6 +19,8 @@ services:
     environment:
       - DATABASE_URL=postgresql://postgres:password@db:5432/novel_db
       - OPENAI_API_KEY=your_api_key_here
+    volumes:
+      - ./backend:/app  # 로컬 ./backend 폴더와 컨테이너 내부 실시간 동기화
     depends_on:
       - db
 
@@ -29,6 +31,8 @@ services:
       - "8501:8501"
     environment:
       - API_BASE_URL=http://backend:8000
+    volumes:
+      - ./frontend:/app  # 로컬 ./frontend 폴더와 컨테이너 내부 실시간 동기화
     depends_on:
       - backend
   
